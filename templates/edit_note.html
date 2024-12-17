@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Редактирование заметки{% endblock %}
+
+{% block content %}
+    <h2>Редактирование заметки</h2>
+    <form action="/notes/edit/{{ note.id }}" method="post">
+        <input type="text" name="title" value="{{ note.title }}" required>
+        <textarea name="content" required>{{ note.content }}</textarea>
+        <button type="submit">Сохранить изменения</button>
+    </form>
+    <a href="/">Назад</a>
+{% endblock %}
