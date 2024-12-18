@@ -57,7 +57,7 @@ def edit_note_form(request: Request, note_id: int, db: Session = Depends(get_db)
         "edit_note.html", {"request": request, "note": note}
     )
 
-
+# Эндпоинт для редактирования заметки
 @app.post("/notes/edit/{note_id}")
 def edit_note(note_id: int, title: str = Form(...), content: str = Form(...), db: Session = Depends(get_db)):
     note = db.query(NoteModel).filter(NoteModel.id == note_id).first()
