@@ -1,29 +1,17 @@
 from fastapi import Depends, FastAPI, HTTPException, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
 from typing import List
-from database import SessionLocal, NoteModel, Base
+from backend.database import get_db
+from models import NoteModel
+from schemas import Note
 from sqlalchemy.orm import Session
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 
-# Зависимость для получения сессии базы данных
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
-
-# Модель данных для заметки
-class Note(BaseModel):
-    id: int
-    title: str
-    content: str
 
 
 # Эндпоинт для отображения домашней страницы
